@@ -6,7 +6,7 @@ from urllib.parse import quote
 import cloudscraper
 from bs4 import BeautifulSoup
 
-from utils.logger import logger
+from ..utils.logger import logger
 
 from .base import BaseParser
 

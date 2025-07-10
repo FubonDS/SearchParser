@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 from typing import Dict, Optional
 
-from database.postgres_db.postgres_tools import PostgresHandler
+from ..database.postgres_db.postgres_tools import PostgresHandler
 
 UNWANTED_WIKINEWS_TAIL = [
     "本篇报道已经存档，不能再作修訂。",

@@ -1,12 +1,12 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
-from parser import parse_article
+from .parser import parse_article
 from typing import Dict, List, Optional
 
 import requests
 
-from utils.logger import logger
-from utils.text_utils import extract_date_from_metadata, parse_published_date
+from .utils.logger import logger
+from .utils.text_utils import extract_date_from_metadata, parse_published_date
 
 
 class SearchParser:

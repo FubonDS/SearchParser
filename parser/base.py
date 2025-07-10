@@ -5,8 +5,8 @@ from urllib.parse import quote
 
 from newspaper import Article
 
-from utils.logger import logger
-from utils.text_utils import clean_wikinews_tail
+from ..utils.logger import logger
+from ..utils.text_utils import clean_wikinews_tail
 
 
 class BaseParser(ABC):
