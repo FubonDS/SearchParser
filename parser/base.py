@@ -32,11 +32,15 @@ class GenericParser(BaseParser):
             article.parse()
             
             text = article.text
+            published = article.publish_date
+            if published:
+                published = published.strftime("%Y-%m-%d")
             if "wikinews.org" in encoded_url:
                 text = clean_wikinews_tail(text)
             
             return {
                     "title": article.title,
+                    "published": published,
                     "text": text,
                     "error": None
                 }   
@@ -44,6 +48,7 @@ class GenericParser(BaseParser):
             logger.error(f"[GenericParser] 解析失敗：{e}")
             return {
                 "title": "",
+                "published": None,
                 "text": "",
                 "error": str(e)
             }

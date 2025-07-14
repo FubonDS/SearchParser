@@ -7,6 +7,7 @@ import cloudscraper
 from bs4 import BeautifulSoup
 
 from ..utils.logger import logger
+from datetime import datetime
 
 from .base import BaseParser
 
@@ -30,6 +31,8 @@ def fetch_ctee_article_full(url: str, retry: int = 3) -> dict:
             date_str = date_tag.find("time").get_text(strip=True) if date_tag else ""
             time_str = time_tag.find("time").get_text(strip=True) if time_tag else ""
             publish_datetime = f"{date_str} {time_str}".strip()
+            if publish_datetime:
+                publish_datetime = datetime.strptime(publish_datetime, "%Y-%m-%d")
 
             article = soup.find("article")
             if not article:
@@ -43,6 +46,7 @@ def fetch_ctee_article_full(url: str, retry: int = 3) -> dict:
 
             return {
                 "title": title,
+                "published": publish_datetime,
                 "content": content
             }
 
@@ -65,11 +69,13 @@ class CteeParser(BaseParser):
             if "error" not in result:
                 return {
                     "title": result["title"],
+                    "published": result["published"],
                     "text": result["content"],
                     "error": None
                 }
             return {
                 "title": "",
+                "published": None,
                 "text": "",
                 "error": result["error"]
             }
@@ -77,6 +83,7 @@ class CteeParser(BaseParser):
             logger.error(f"[GenericParser] 解析失敗：{e}")
             return {
                 "title": "",
+                "published": None,
                 "text": "",
                 "error": str(e)
             }

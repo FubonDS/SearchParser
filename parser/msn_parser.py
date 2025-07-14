@@ -26,7 +26,7 @@ def parse_msn_article_json(article_json: dict) -> dict:
 
     return {
         "title": title,
-        "publish_time": published_date,
+        "published": published_date,
         "content": content
     }
 
@@ -61,18 +61,20 @@ class MSNParser(BaseParser):
             if "error" not in result:
                 return {
                     "title": result["title"],
+                    "published": result["published"],
                     "text": result["content"],
                     "error": None
                 }
             return {
                 "title": "",
-                "text": "",
+                "published": None,
                 "error": result["error"]
             }
         except Exception as e:
             logger.error(f"[GenericParser] 解析失敗：{e}")
             return {
                 "title": "",
+                "published": None,
                 "text": "",
                 "error": str(e)
             }            
