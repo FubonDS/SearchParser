@@ -1,0 +1,3 @@
+newspaper4k
+cloudscraper
+psycopg2-binary

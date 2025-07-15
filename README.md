@@ -23,7 +23,7 @@
 * Python 3.8+
 * `newspaper4k`
 * `cloudscraper`
-* `psycopg2`（若需使用 PostgreSQL）
+* `psycopg2-binary`（若需使用 PostgreSQL）
 
 安裝方式：
 
@@ -49,9 +49,9 @@ docker-compose up -d
 ### 1. 建立 `SearchParser`
 
 ```python
-from search_parser import SearchParser
-from database.postgres_db.postgres_tools import PostgresHandler
-from utils.logger import logger
+from SearchParsersearch_parser import SearchParser
+from SearchParserdatabase.postgres_db.postgres_tools import PostgresHandler
+from SearchParserutils.logger import logger
 
 your_postgres_handler = PostgresHandler(config_path="./config/private/database.ini", logger=logger)
 parser = SearchParser(db_handler=your_postgres_handler)  # 或可不傳 db
