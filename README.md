@@ -49,9 +49,9 @@ docker-compose up -d
 ### 1. 建立 `SearchParser`
 
 ```python
-from SearchParsersearch_parser import SearchParser
-from SearchParserdatabase.postgres_db.postgres_tools import PostgresHandler
-from SearchParserutils.logger import logger
+from SearchParser.search_parser import SearchParser
+from SearchParser.database.postgres_db.postgres_tools import PostgresHandler
+from SearchParser.utils.logger import logger
 
 your_postgres_handler = PostgresHandler(config_path="./config/private/database.ini", logger=logger)
 parser = SearchParser(db_handler=your_postgres_handler)  # 或可不傳 db
